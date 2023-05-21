@@ -180,7 +180,7 @@ header a:hover {
 
 .form-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 15% auto;
     padding: 40px;
     background-color: #fff;
     border-radius: 5px;
@@ -361,4 +361,17 @@ input[type="password"] {
 
 .listCard .count {
     margin: 0 10px;
+}
+
+#logout-button {
+    color: #fff !important;
+    background: none !important;
+    border: none !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+}
+
+#logout-button:hover {
+    color: lightgreen !important;
+    font-weight: bold !important;
 }

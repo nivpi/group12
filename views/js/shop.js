@@ -64,7 +64,7 @@ let products = [
     }
 ];
 let listCards  = [];
-function initApp(){
+function initShop(){
     products.forEach((value, key) =>{
         let newDiv = document.createElement('div');
         newDiv.classList.add('item');
@@ -76,7 +76,7 @@ function initApp(){
         list.appendChild(newDiv);
     })
 }
-initApp();
+initShop();
 function addToCart(key){
     if(listCards[key] == null){
         // copy product form list to list card

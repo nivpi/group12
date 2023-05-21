@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Farm2Door/.idea/Farm2Door.iml" filepath="$PROJECT_DIR$/../Farm2Door/.idea/Farm2Door.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/group12.iml" filepath="$PROJECT_DIR$/.idea/group12.iml" />
     </modules>
   </component>
 </project>
