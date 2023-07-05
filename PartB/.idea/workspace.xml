@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f96f3dd5-8d38-464d-aacf-5386d8e42a3e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/myAccount.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/myAccount.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/shop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/js/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Farm2Door.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WEB Project - Part 1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/WEB Project - Part 1.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/shop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,6 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/Niv/OneDrive/Documents/GitHub/group12/static",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -77,6 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1684693735524</updated>
       <workItem from="1684693736613" duration="7731000" />
+      <workItem from="1688475048745" duration="1337000" />
     </task>
     <servers />
   </component>
