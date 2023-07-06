@@ -100,7 +100,6 @@ const loginUser = (req, res) => {  //function for users login
             const user = sqlres[0];
             // Save user cookies:
             res.cookie("username", username);
-            res.cookie("password", password);
             res.cookie("name", user.name);
             res.send(`<script> window.location.href = '/index'; </script> `);
         } else {
@@ -181,18 +180,20 @@ const insertOrders = (req, res)=>{ // Function to insert the orders to the datab
 
 const insertOrder = (req, res) => { // Function to insert an order to the database
     const username = req.cookies.username;
-    // const calculateTotalPriceQuery = `SELECT SUM(p.price * c.quantity) AS total FROM cart c JOIN products p ON c.productId = p.productId WHERE c.username = ?`;
-    // console.log('Before executing calculateTotalPriceQuery');
-    // conn.query(calculateTotalPriceQuery, [username], (err, result) => {
-    //     if (err) {
-    //         console.error('Error calculating total price:', err);
-    //         res.status(500).send('Error calculating total price');
-    //         return;
-    //     }
-
-    const totalPrice = 0; // TODO: Calculate the total price from cookies.
+    if (req.cookies.username === null || req.cookies.username === undefined) {
+        console.error('Error, user must be logged in to insert orders.');
+        res.status(500).send('Error, user must be logged in to insert orders.');
+        return;
+    }
+    let totalPrice = 0;
+    let cart = getCartCookies(req);
+    for(var i = 0; i < cart.length; i++) {
+        if (cart[i] !== undefined) {
+            totalPrice += cart[i].price;
+        }
+    }
     console.log('Total Price:', totalPrice);
-    const insertOrderQuery = `INSERT INTO orders (date, totalPrice, username) VALUES (CURDATETIME(), ?, ?)`;
+    const insertOrderQuery = `INSERT INTO orders (datetime, totalPrice, username) VALUES (NOW(), ?, ?)`;
     console.log('Before executing insertOrderQuery');
     conn.query(insertOrderQuery, [totalPrice, username], (err, result) => {
         if (err) {
@@ -200,18 +201,17 @@ const insertOrder = (req, res) => { // Function to insert an order to the databa
             res.status(500).send('Error adding a new order');
             return;
         }
-        // const clearCartQuery = `DELETE FROM cart WHERE username = ? `;
-        // conn.query(clearCartQuery, [username], (err, result) => {
-        //     if (err) {
-        //         console.error('Error clearing cart:', err);
-        //         res.status(500).send('Error clearing cart');
-        //     }
-        // });
-        // TODO: Delete cart from cookies
         console.log('Order added successfully');
-        res.redirect('/myOrders');
+        res.send('Order added successfully');
     });
 };
+
+const supplierNames = {
+    1: "Aroma Trail",
+    2: "Freshland",
+    3: "Orchard View",
+    4: "Green Valley"
+}
 
 const supplierProducts = (req, res) => { // Function to search products from the database, by supplier id
     const supplierSearch = req.query.supplier; // Get the search query from the URL parameter
@@ -220,7 +220,6 @@ const supplierProducts = (req, res) => { // Function to search products from the
         res.status(500).send('An error has occurred, expected a supplier id in the query.');
     }
     else {
-        res.cookie('searchQuery', supplierSearch, {maxAge: 86400000}); // Cookie expires after 24 hours
         const query = `SELECT * FROM products WHERE supplier = '${supplierSearch}'`;
         console.log('Executing search query:', query);
         conn.query(query, (err, results) => {
@@ -229,7 +228,7 @@ const supplierProducts = (req, res) => { // Function to search products from the
                 res.status(500).send('An error occurred while retrieving products');
                 return;
             }
-            res.render('products', {products: results});
+            res.render('shop', {productsResponse: results, supplier: {name: `${supplierSearch}` in supplierNames ? supplierNames[supplierSearch] : "Unknown Supplier"}});
         });
     }
 };
@@ -241,7 +240,7 @@ const getAllProducts = (req, res) => { // Function to get all products from the 
             console.log("Error: Cannot get all products.", err);
             res.status(400).send({ message: "Error: Cannot get all products." });
             return; }
-        res.render('shop', { products: results });
+        res.render('shop', { productsResponse: results, supplier: {name: "All suppliers"} });
     });
 };
 
@@ -254,25 +253,9 @@ const getOrders = (req, res) => {
             res.status(500).send('An error has occurred while retrieving orders');
             return;
         }
-        res.render('/myOrders', { orders: results });
+        res.render('myAccount', { orders: results });
     });
 }
-
-// const displayCart = (req,res) =>{
-//     // const query = ' SELECT c.cartId , c.productId ,p.productId ,c.quantity, p.name, p.image1, p.image1, p.price\n' +
-//     //     '    FROM cart c\n' +
-//     //     '    JOIN products p ON c.productId = p.productId ';
-//     //
-//     // conn.query(query, (err, results) => {
-//     //     if (err) {
-//     //         console.error('Error retrieving cart:', err);
-//     //         res.status(500).send('An error occurred while retrieving myCart');
-//     //         return;
-//     //     }
-//     // });
-//     // TODO: Make sure the myCart page is loading correctly with the products from the cookies
-//     res.render('/myCart');
-// }
 
 const getUsers = (req, res) => {
     const query = 'SELECT * FROM users';
@@ -284,6 +267,23 @@ const getUsers = (req, res) => {
         }
         res.render('/users', { users: results });
     });
+}
+
+function getCartCookies(request) {
+    var result = [];
+    for (const key in request.cookies) {
+        if(request.cookies.hasOwnProperty(key)) {
+            if (key.startsWith('cart')) {
+                let value = request.cookies[key];
+                let cartKey = key.split("cart")[1]
+                result[cartKey] = JSON.parse(value);
+                result[cartKey].id = Number(result[cartKey].id);
+                result[cartKey].price = Number(result[cartKey].price);
+                result[cartKey].quantity = Number(result[cartKey].quantity);
+            }
+        }
+    }
+    return result;
 }
 
 

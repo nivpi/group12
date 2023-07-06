@@ -6,6 +6,7 @@ const port = 3000;
 const BodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const CreateDB_CRUD = require('./db/CreateDB_CRUD');
+
 app.use(BodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname,"static")));
@@ -28,7 +29,8 @@ app.get('/login',(req,res)=>{
 });
 
 app.get('/myAccount',(req,res)=>{
-    res.render("myAccount");
+    crud.getOrders(req,res);
+    //res.render("myAccount");
 });
 
 app.get('/register',(req,res)=>{
@@ -36,7 +38,11 @@ app.get('/register',(req,res)=>{
 });
 
 app.get('/shop',(req,res)=>{
-    res.render("shop");
+    if (req.query.supplier) {
+        crud.supplierProducts(req,res);
+    } else {
+        crud.getAllProducts(req,res);
+    }
 });
 
 //create tables in DB
@@ -50,6 +56,10 @@ app.get('/insertUsers',crud.insertUsers);
 app.get('/insertProducts',crud.insertProducts);
 
 app.get('/insertOrders',crud.insertOrders);
+
+app.get('/insertOrder',crud.insertOrder);
+
+app.get('/getAllProducts',crud.getAllProducts);
 
 app.post('/login', crud.loginUser);
 

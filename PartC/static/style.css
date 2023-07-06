@@ -1,5 +1,4 @@
-
-/* Home Page */
+/* style.css */
 
 body {
     font-family: Arial, sans-serif;
@@ -293,6 +292,38 @@ input[type="password"] {
     background-color: #453E3B;
     height: 100vh;
     transition: 0.5s;
+}
+
+/* Style for the list container */
+.orderlist {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for each order */
+.orderlist > div {
+    padding: 5px;
+}
+
+.order {
+    /*background-color: lightgreen;*/
+    /*font-weight: bold;*/
+}
+
+#passwordChangeBtn {
+    display: flex;
+    margin: auto;
+    max-width: 500px;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.accountTextBox {
+    display: flex;
+    margin: 0 auto 20px auto;
+    max-width: 470px;
 }
 
 .active .card {

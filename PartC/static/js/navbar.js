@@ -3,7 +3,6 @@ let rightItems = document.querySelector('.right-items');
 function initApp(){
     // Get cookies
     const username = getCookie(document,'username');
-    const password = getCookie(document,'password');
     const name = getCookie(document,'name');
 
     if (name) {

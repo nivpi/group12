@@ -1,3 +1,4 @@
+// myAccount.js
 let formHeader = document.getElementById('form-header');
 
 function initMyAccount() {
